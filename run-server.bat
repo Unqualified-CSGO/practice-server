@@ -12,17 +12,18 @@ IF '%choice%'=='' GOTO start_csgo
 ECHO "%choice%" is not valid
 goto :choice
 
+:start_csgo
+echo "Starting CSGO..." 
+explorer "steam://run/730"
+timeout /t 5 /nobreak >nul
+goto :start_server
+
 :csgo_check
 SETLOCAL EnableExtensions
 set EXE=csgo.exe
 FOR /F %%x IN ('tasklist /NH /FI "IMAGENAME eq %EXE%"') DO IF NOT %%x == %EXE% (
     goto choice_prompt
 )
-
-:start_csgo
-echo "Starting CSGO..." 
-explorer "steam://run/730"
-timeout /t 5 /nobreak >nul
 
 :start_server
 echo "Starting server..."
